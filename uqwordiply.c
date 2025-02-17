@@ -530,7 +530,7 @@ void handle_end_game(Dictionary* userAttempts) {
     }
     printf("\n");
     printf("Total length of words found: %d\n", totalLength); 
-    printf("Longest word(s) found:\n"); 
+    printf("Longest word(s) found in dictionary:\n"); 
     for (int loop = 0; loop < userAttempts->sizeoflist; loop++) { 
         if (strlen(userAttempts->listofwords[loop]) == wordLength) {  
             char* word = userAttempts->listofwords[loop]; 
