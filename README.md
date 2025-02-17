@@ -38,7 +38,10 @@ If any of these conditions are true, program will exit with a status of 1:
   - An unexpected argument is present.
 
 ### Examples: 
-(
+![Photo](https://github.com/UniversalTze/CSSE2310A1/blob/main/examples/Example1.png)
+![Photo](https://github.com/UniversalTze/CSSE2310A1/blob/main/examples/Example2.png)
+
+
 
 
 
