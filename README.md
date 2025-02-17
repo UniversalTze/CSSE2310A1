@@ -10,7 +10,7 @@ To access the linux environment, a SSH or "Secure Shell" was used.
 - 62.25/65 (Autograder Score)
 
 ## Instructions to run the game
-Notes: File can only be ran in UQ Linux environment through SSH.
+Notes: Made changes so that file can now be run without being in UQ Linux environment. Removed links to UQ's library so it can now work when git cloning the repo.
 
 ### Parameters 
 
