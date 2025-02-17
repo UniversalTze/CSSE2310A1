@@ -33,10 +33,11 @@ void createsubstringdict(FILE* ptr, char* starterstring, Dictionary* words) {
     while ((word = fgets(buffer, INITIAL_BUFFER_SIZE, ptr))) { 
         word = touppercase(word);
         int length = 0;
+
         char* substring = strstr(word, starterstring); 
-        //remove extra space character and replace it with null terminator. 
+        //remove extra space character and replace it with null terminator.
         word[strlen(word) - 1] = '\0'; 
-        if ((processword(word) && substring != NULL)) { 
+        if ((processword(word)) && (substring != NULL)) {    
             char* toaddword = strdup(word);   
             words->listofwords[words->sizeoflist] = toaddword;  
             words->sizeoflist += 1;  

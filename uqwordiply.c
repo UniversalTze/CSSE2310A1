@@ -1,12 +1,23 @@
-//Author: Tze Kheng Goh 
+//AUTHOR: TZE KHENG GOH 
 //A1 file, Lets work
 #include <stdio.h>
 #include <stdbool.h> 
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <csse2310a1.h>
+// #include <csse2310a1.h>
 #include "dictionary.h"
+#include "time.h"
+
+#define STARTER_WORD_LIST_COUNT 11
+#define STARTER_WORD_ALL_WORDS 22
+#define LENGTH_THREE 3
+#define LENGTH_FOUR 4
+
+static const char* threeStarter[] = {"ING", "ESS", "ATI", "TER", "ION", "NES", "ATE", "TIO", "ENT", "ICA", "BRI"};
+static const char* fourStarter[] = {"ABLE", "EDUN", "TING", "ALLY", "OVRE", "NTER", "TIVE", "MENT", "ENES", "OLOG", "COLO"};
+static const char* PossStarterWords[] = {"ING", "ESS", "ATI", "TER", "ION", "NES", "ATE", "TIO", "ENT", "ICA", "BRI",
+                              "ABLE", "EDUN", "TING", "ALLY", "OVRE", "NTER", "TIVE", "MENT", "ENES", "OLOG", "COLO"};
 
 
 bool check_starter_args(int numofargs, char** arguments);
@@ -37,7 +48,7 @@ int main(int argc, char* argv[]) {
     char* starterstring = NULL; 
     char dictcom[] = "--dictionary";  
     FILE* fpointer = NULL;  
-    char defaultpath[] = "/usr/share/dict/words";    
+    char defaultpath[] = "/usr/share/dict/words";
     bool eof_flag = false; 
     bool* eof_ptr = &eof_flag;  
     if (argc > 1) {   
@@ -202,7 +213,7 @@ bool check_starter_args(int numofargs, char** arguments) {
     }
     if (numofargs == 5 && ((strcmp(len, arguments[1]) == 0) || 
             strcmp(len, arguments[3]) == 0)) {  
-        int lenIndex; 
+        int lenIndex = 0; 
         for (int index = 0; index < numofargs; index++) {  
             if (strcmp(len, arguments[index]) == 0) { 
                 lenIndex = index + 1; //find the length specified. 
@@ -342,13 +353,26 @@ void print_message(int count, char* starterword) {
  * Function is used to malloc space for the starter string with strdup. 
  * 
  * lengtharg: is the lenght specified by the user on the command line. 
- * Valid inputs: 0, 3, 4
+ * Valid inputs: 0 or 3 or 4
  *
  * Returns: character pointer to an array. Represents the starterestring. 
  *
  **/
-char* process_starter_word(int lengtharg) {  
-    const char* wordtobedup = get_wordiply_starter_word(lengtharg); 
+char* process_starter_word(int lengtharg) { 
+    int randomIndex = 0; 
+    srand(time(NULL));
+    const char* wordtobedup; 
+    if (lengtharg == LENGTH_THREE) { 
+      randomIndex = (rand() % STARTER_WORD_LIST_COUNT);
+      wordtobedup = threeStarter[randomIndex];
+    } else if (lengtharg == LENGTH_FOUR) { 
+      randomIndex = (rand() % STARTER_WORD_LIST_COUNT);
+      wordtobedup = fourStarter[randomIndex];
+    } else { 
+      randomIndex = (rand() % STARTER_WORD_ALL_WORDS);
+      wordtobedup = PossStarterWords[randomIndex];
+    }
+
     char* starterstring = strdup(wordtobedup); 
     return starterstring;
 } 
